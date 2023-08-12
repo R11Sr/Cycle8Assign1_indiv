@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main %}
+<style>
+    body{
+        background:  #6E2375 ;
+        color: white;
+        
+    }
+</style>
+{%set imageName = product['image']%}
+<div class="container col-md-8 text-white">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col d-flex align-items-center pe-5" id="image-column">
+                <div class="pb-3">
+                    <h3>{{product['title']}}</h3>
+                </div>
+                <img class="d-inline-block" 
+                src="{{ url_for('static', filename='images/' ~ imageName)}}"    
+                alt="{{product['image']}}" 
+                width="250em"
+                height="250em" 
+                id="full-property-image"
+                >   
+
+            </div>
+            <div class="col">
+                <div class="container p-2">
+                        <div class="pb-3">
+                            <p>{{product['title']}}</p>
+                        </div>
+                    
+                        <div class="pb-3">
+                          <p>{{locale.currency(product['price'],grouping =
+                            True)}}</p>
+                        </div>
+                    
+                        <div class="pb-3">
+                            <p>{{product['description']}}</p>
+                        </div>
+                        <button type="submit info" class="btn btn-primary">Add to Cart</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

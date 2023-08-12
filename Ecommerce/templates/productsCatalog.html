@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block main %}
+<style>
+    body{
+        background: linear-gradient(90deg, #BB6FDE 50%, #6E2375 50%);
+    }
+
+    h5{
+        color: white;
+    }
+
+   .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+    }
+    .text-muted{
+        width: 250px;
+    }
+    .card-title{
+        width: 250px;
+    }
+</style>
+<div class="heading" style="color: white;" ><h1>Products</h1>
+</div>
+
+<div class="container">
+    <div class="grid-container">
+
+        {%for product in  productList%}
+            <div class="grid-item">
+                <div class="card">
+                    <img                     
+                        
+                        src="static/images/{{product['image']}}" 
+                        
+                        alt="{{product['title']}}"  
+                        width="298px"
+                        height="370px"                                          
+                    >
+                    <div class="card-body">
+                        <h4 class="card-title" >{{product['title']}}</h4>
+                       
+                        <p class="card-text pb-2"><span class="elongated-div">
+                                <span
+                                    class="price">{{locale.currency(product['price'],grouping =
+                                    True)}} <a href="{{url_for('productPage',id = product['id'])}}">
+                                                <button class="btn btn-primary btn-sm">
+                                                    view
+                                                </button>
+                                            </a> 
+                                </span>
+                            </span></p>
+
+                        <div class="add-to-cart">
+                            <form method= "POST" action="#" id="{{product.id}}" class="addToCartForm">
+                                <input type="text" hidden value="{{product['id']}}" id="prod_id" name="prod_id">
+                                <button class="btn btn-primary submit">Add To Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+    </div>
+
+</div>
+
+
+{% endblock %}
